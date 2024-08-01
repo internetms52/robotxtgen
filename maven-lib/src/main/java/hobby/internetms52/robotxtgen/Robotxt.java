@@ -16,9 +16,10 @@ public class Robotxt {
 
     /**
      * default constructor
+     *
      * @param sections UserAgentSection
      * @param sitemaps sitemaps in robot.txt
-     * @param host host in robot.txt
+     * @param host     host in robot.txt
      */
     public Robotxt(List<UserAgentSection> sections, List<String> sitemaps, String host) {
         this.sections = sections;
@@ -26,31 +27,52 @@ public class Robotxt {
         this.host = host;
     }
 
+    /**
+     * defined in UserAgentSection Class
+     *
+     * @return List of UserAgentSection
+     */
     public List<UserAgentSection> getSections() {
         return sections;
     }
 
+    /**
+     * default UserAgentSection Setter
+     * @param sections List of UserAgentSection
+     */
     public void setSections(List<UserAgentSection> sections) {
         this.sections = sections;
     }
 
-    //getter
+    /**
+     * default sitemaps getter
+     * @return List of String
+     */
     public List<String> getSitemaps() {
         return sitemaps;
     }
 
+    /**
+     * default sitemaps setter
+     * @param sitemaps List of String
+     */
     public void setSitemaps(List<String> sitemaps) {
         this.sitemaps = sitemaps;
     }
 
     /**
      * Host: www.example.com
-     * @return
+     *
+     * @return String
      */
     public String getHost() {
         return host;
     }
 
+    /**
+     * default host setter
+     * @param host String
+     */
     public void setHost(String host) {
         this.host = host;
     }
