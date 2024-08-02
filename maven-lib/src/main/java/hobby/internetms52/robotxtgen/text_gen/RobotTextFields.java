@@ -1,14 +1,16 @@
 package hobby.internetms52.robotxtgen.text_gen;
 
-public enum UserAgentSectionFields {
+public enum RobotTextFields {
     UserAgent("User-agent"),
     Disallow("Disallow"),
     CrawDelay("Crawl-delay"),
-    RequestRate("Request-rate");
+    RequestRate("Request-rate"),
+    Sitemap("Sitemap"),
+    Host("Host");
 
     final public String value;
 
-    UserAgentSectionFields(String value) {
+    RobotTextFields(String value) {
         this.value = value;
     }
 }

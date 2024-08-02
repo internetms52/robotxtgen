@@ -10,26 +10,26 @@ public class UserAgentSectionTextGenerator implements TextGen<UserAgentSection> 
             stringBuilder.append(commentGenText(comment));
         });
         stringBuilder.append(
-                keyValuePairGenText(UserAgentSectionFields.UserAgent.value, object.getUserAgent())
+                keyValuePairGenText(RobotTextFields.UserAgent.value, object.getUserAgent())
         );
         object.getDisallows().forEach(disallow -> {
             stringBuilder.append(
-                    keyValuePairGenText(UserAgentSectionFields.Disallow.value, disallow)
+                    keyValuePairGenText(RobotTextFields.Disallow.value, disallow)
             );
         });
         object.getAllows().forEach(allow -> {
             stringBuilder.append(
-                    keyValuePairGenText(UserAgentSectionFields.Disallow.value, allow)
+                    keyValuePairGenText(RobotTextFields.Disallow.value, allow)
             );
         });
         stringBuilder.append(
                 keyValuePairGenText(
-                        UserAgentSectionFields.CrawDelay.value, String.valueOf(object.getCrawlDelay())
+                        RobotTextFields.CrawDelay.value, String.valueOf(object.getCrawlDelay())
                 )
         );
         stringBuilder.append(
                 keyValuePairGenText(
-                        UserAgentSectionFields.RequestRate.value, object.getRequestRate()
+                        RobotTextFields.RequestRate.value, object.getRequestRate()
                 )
         );
         return stringBuilder.toString();
