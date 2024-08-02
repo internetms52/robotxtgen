@@ -14,7 +14,7 @@ public class RobotTextFileWriter {
             Files.writeString(filePath, content);
             logger.info(
                     filePath.toString(),
-                    "has been successfully written. "
+                    " has been successfully written. "
             );
         } catch (IOException e) {
             logger.error(
