@@ -6,6 +6,9 @@ public class UserAgentSectionTextGenerator implements TextGen<UserAgentSection> 
     @Override
     public String gen(UserAgentSection object) {
         StringBuilder stringBuilder = new StringBuilder();
+        object.getComments().forEach(comment -> {
+            stringBuilder.append(commentGenText(comment));
+        });
         stringBuilder.append(
                 keyValuePairGenText(UserAgentSectionFields.UserAgent.value, object.getUserAgent())
         );
@@ -14,6 +17,21 @@ public class UserAgentSectionTextGenerator implements TextGen<UserAgentSection> 
                     keyValuePairGenText(UserAgentSectionFields.Disallow.value, disallow)
             );
         });
-        return null;
+        object.getAllows().forEach(allow -> {
+            stringBuilder.append(
+                    keyValuePairGenText(UserAgentSectionFields.Disallow.value, allow)
+            );
+        });
+        stringBuilder.append(
+                keyValuePairGenText(
+                        UserAgentSectionFields.CrawDelay.value, String.valueOf(object.getCrawlDelay())
+                )
+        );
+        stringBuilder.append(
+                keyValuePairGenText(
+                        UserAgentSectionFields.RequestRate.value, object.getRequestRate()
+                )
+        );
+        return stringBuilder.toString();
     }
 }
