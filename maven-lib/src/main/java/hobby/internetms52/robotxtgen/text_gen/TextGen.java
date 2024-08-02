@@ -8,9 +8,6 @@ public interface TextGen<T> {
     String gen(T object);
 
     default String keyValuePairGenText(String key, String value) {
-        if (value == null || value.isEmpty()) {
-            return "";
-        }
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(key);
         stringBuilder.append(TEXT_GEN_COLON);
@@ -21,9 +18,6 @@ public interface TextGen<T> {
     }
 
     default String commentGenText(String value) {
-        if (value == null || value.isEmpty()) {
-            return "";
-        }
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(TEXT_HASH_SIGN);
         stringBuilder.append(" ");
