@@ -3,6 +3,7 @@ package hobby.internetms52.robotxtgen.text_gen;
 public enum RobotTextFields {
     UserAgent("User-agent"),
     Disallow("Disallow"),
+    Allow("Allow"),
     CrawDelay("Crawl-delay"),
     RequestRate("Request-rate"),
     Sitemap("Sitemap"),

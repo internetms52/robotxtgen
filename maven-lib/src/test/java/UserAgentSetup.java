@@ -13,7 +13,7 @@ public class UserAgentSetup {
                 "*",
                 disallow,
                 allow,
-                null,
+                10,
                 null,
                 null
         );

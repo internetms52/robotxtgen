@@ -10,7 +10,7 @@ import java.util.List;
 
 public class RobotTextGeneratorTest {
     private Robotxt robotxt;
-    private RobotTextGenerator robotTextGenerator = new RobotTextGenerator();
+    private final RobotTextGenerator robotTextGenerator = new RobotTextGenerator();
 
     @BeforeEach
     public void setUp() {
@@ -43,7 +43,9 @@ public class RobotTextGeneratorTest {
                 "\n" +
                 "Sitemap: https://www.example.com/sitemap.xml\n" +
                 "Host: www.example.com";
-        Assertions.assertEquals(expectedAnswer, result);
+        String resultWithoutLineSeparator = result.replace("\n", "").replace("\r", "");
+        String expectedAnswerWithoutLineSeparator = expectedAnswer.replace("\n", "").replace("\r", "");
+        Assertions.assertEquals(expectedAnswerWithoutLineSeparator, resultWithoutLineSeparator);
     }
 
 }

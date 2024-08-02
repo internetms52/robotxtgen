@@ -28,7 +28,7 @@ public class UserAgentSectionTextGenerator implements TextGen<UserAgentSection> 
         if (isValidInput(object.getAllows())) {
             object.getAllows().forEach(allow -> {
                 stringBuilder.append(
-                        keyValuePairGenText(RobotTextFields.Disallow.value, allow)
+                        keyValuePairGenText(RobotTextFields.Allow.value, allow)
                 );
             });
         }
