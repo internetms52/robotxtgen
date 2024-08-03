@@ -1,10 +1,14 @@
 package hobby.internetms52.robotxtgen.config;
 
+import hobby.internetms52.robotxtgen.RobotTextDataInstance;
+
 public class RobotTextGenConfig {
     String txtGenPath;
+    RobotTextDataInstance robotTextDataInstance;
 
-    public RobotTextGenConfig(String txtGenPath) {
+    public RobotTextGenConfig(String txtGenPath, RobotTextDataInstance robotTextDataInstance) {
         this.txtGenPath = txtGenPath;
+        this.robotTextDataInstance = robotTextDataInstance;
     }
 
     public String getTxtGenPath() {
@@ -13,5 +17,13 @@ public class RobotTextGenConfig {
 
     public void setTxtGenPath(String txtGenPath) {
         this.txtGenPath = txtGenPath;
+    }
+
+    public RobotTextDataInstance getRobotTextDataInstance() {
+        return robotTextDataInstance;
+    }
+
+    public void setRobotTextDataInstance(RobotTextDataInstance robotTextDataInstance) {
+        this.robotTextDataInstance = robotTextDataInstance;
     }
 }

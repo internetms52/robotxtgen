@@ -1,7 +1,6 @@
 package hobby.internetms52.robotxtgen.service;
 
 import hobby.internetms52.robotxtgen.RobotTextFileWriter;
-import hobby.internetms52.robotxtgen.RobotTextDataInstance;
 import hobby.internetms52.robotxtgen.config.RobotTextGenConfig;
 import hobby.internetms52.robotxtgen.exception.FileWriterException;
 import hobby.internetms52.robotxtgen.exception.InvalidOutputDirectoryException;
@@ -14,8 +13,8 @@ public class RobotTextGenService {
     private final RobotTextContentGenerator robotTextContentGenerator = new RobotTextContentGenerator();
     private final RobotTextFileWriter robotTextFileWriter = new RobotTextFileWriter();
 
-    public void execute(RobotTextGenConfig robotTextGenConfig, RobotTextDataInstance dataInstance) throws InvalidOutputDirectoryException, FileWriterException {
-        String content = robotTextContentGenerator.gen(dataInstance);
+    public void execute(RobotTextGenConfig robotTextGenConfig) throws InvalidOutputDirectoryException, FileWriterException {
+        String content = robotTextContentGenerator.gen(robotTextGenConfig.getRobotTextDataInstance());
         Path filePath = Paths.get(robotTextGenConfig.getTxtGenPath());
         if (!robotTextGenConfig.getTxtGenPath().isEmpty()) {
             robotTextFileWriter.write(filePath, content);
