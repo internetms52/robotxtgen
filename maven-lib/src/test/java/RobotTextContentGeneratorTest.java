@@ -1,6 +1,6 @@
-import hobby.internetms52.robotxtgen.Robotxt;
+import hobby.internetms52.robotxtgen.RobotTextDataInstance;
 import hobby.internetms52.robotxtgen.UserAgentSection;
-import hobby.internetms52.robotxtgen.text_gen.RobotTextGenerator;
+import hobby.internetms52.robotxtgen.text_gen.RobotTextContentGenerator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,9 +8,9 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RobotTextGeneratorTest {
-    private Robotxt robotxt;
-    private final RobotTextGenerator robotTextGenerator = new RobotTextGenerator();
+public class RobotTextContentGeneratorTest {
+    private RobotTextDataInstance robotTextDataInstance;
+    private final RobotTextContentGenerator robotTextContentGenerator = new RobotTextContentGenerator();
 
     @BeforeEach
     public void setUp() {
@@ -20,7 +20,7 @@ public class RobotTextGeneratorTest {
         userAgentSectionList.add(UserAgentSetup.setupCase3());
         List<String> sitemaps = new ArrayList<>();
         sitemaps.add("https://www.example.com/sitemap.xml");
-        robotxt = new Robotxt(
+        robotTextDataInstance = new RobotTextDataInstance(
                 userAgentSectionList,
                 sitemaps,
                 "www.example.com"
@@ -29,7 +29,7 @@ public class RobotTextGeneratorTest {
 
     @Test
     public void testGenerator() {
-        String result = robotTextGenerator.gen(robotxt);
+        String result = robotTextContentGenerator.gen(robotTextDataInstance);
         String expectedAnswer = "User-agent: *\n" +
                 "Disallow: /private/\n" +
                 "Allow: /public/\n" +

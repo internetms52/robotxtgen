@@ -9,7 +9,7 @@ import java.nio.file.Path;
 public class RobotTextFileWriter {
     private static final NativeLogger logger = new NativeLogger(RobotTextFileWriter.class);
 
-    public static void write(Path filePath, String content) throws FileWriterException {
+    public void write(Path filePath, String content) throws FileWriterException {
         try {
             Files.writeString(filePath, content);
             logger.info(

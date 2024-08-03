@@ -1,12 +1,12 @@
 package hobby.internetms52.robotxtgen.text_gen;
 
-import hobby.internetms52.robotxtgen.Robotxt;
+import hobby.internetms52.robotxtgen.RobotTextDataInstance;
 
-public class RobotTextGenerator implements TextGen<Robotxt> {
+public class RobotTextContentGenerator implements TextGen<RobotTextDataInstance> {
     private final UserAgentSectionTextGenerator userAgentSectionTextGenerator = new UserAgentSectionTextGenerator();
 
     @Override
-    public String gen(Robotxt object) {
+    public String gen(RobotTextDataInstance object) {
         StringBuilder stringBuilder = new StringBuilder();
         object.getSections().forEach(userAgentSection -> {
             stringBuilder.append(

@@ -8,7 +8,7 @@ import java.util.List;
  * @author Eugene Lu.
  * @version 1.0
  */
-public class Robotxt {
+public class RobotTextDataInstance {
     private List<UserAgentSection> sections;
     private List<String> sitemaps;
     private String host;
@@ -21,7 +21,7 @@ public class Robotxt {
      * @param sitemaps sitemaps in robot.txt
      * @param host     host in robot.txt
      */
-    public Robotxt(List<UserAgentSection> sections, List<String> sitemaps, String host) {
+    public RobotTextDataInstance(List<UserAgentSection> sections, List<String> sitemaps, String host) {
         this.sections = sections;
         this.sitemaps = sitemaps;
         this.host = host;
@@ -38,6 +38,7 @@ public class Robotxt {
 
     /**
      * default UserAgentSection Setter
+     *
      * @param sections List of UserAgentSection
      */
     public void setSections(List<UserAgentSection> sections) {
@@ -46,6 +47,7 @@ public class Robotxt {
 
     /**
      * default sitemaps getter
+     *
      * @return List of String
      */
     public List<String> getSitemaps() {
@@ -54,6 +56,7 @@ public class Robotxt {
 
     /**
      * default sitemaps setter
+     *
      * @param sitemaps List of String
      */
     public void setSitemaps(List<String> sitemaps) {
@@ -71,6 +74,7 @@ public class Robotxt {
 
     /**
      * default host setter
+     *
      * @param host String
      */
     public void setHost(String host) {
