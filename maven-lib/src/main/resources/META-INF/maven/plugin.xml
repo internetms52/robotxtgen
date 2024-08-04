@@ -4,5 +4,5 @@
     <description>robotxtgen-maven-plugin</description>
     <groupId>io.github.internetms52</groupId>
     <artifactId>robotxtgen</artifactId>
-    <version>0.0.1</version>
+    <version>0.1.1</version>
 </plugin>

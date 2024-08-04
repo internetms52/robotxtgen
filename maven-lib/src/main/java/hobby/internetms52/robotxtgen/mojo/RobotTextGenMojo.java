@@ -13,7 +13,7 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
 
-@Mojo(name = "generate-robotstxt", defaultPhase = LifecyclePhase.GENERATE_RESOURCES)
+@Mojo(name = "generate-robotstxt", defaultPhase = LifecyclePhase.COMPILE)
 public class RobotTextGenMojo extends AbstractMojo {
     public final Log log = getLog();
     private final RobotTextGenService robotTextGenService = new RobotTextGenService();
@@ -26,6 +26,9 @@ public class RobotTextGenMojo extends AbstractMojo {
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
         try {
+            if (configClass != null) {
+                log.info("configClass:" + configClass);
+            }
             String sourceDirectory = project.getBuild().getSourceDirectory();
             RobotTextGenConfig robotTextGenConfig = robotTextConfigurationService.execute(project, configClass);
             robotTextGenService.execute(robotTextGenConfig);

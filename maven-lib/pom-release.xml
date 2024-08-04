@@ -6,12 +6,12 @@
 
     <parent>
         <groupId>io.github.internetms52</groupId>
-        <artifactId>robotxtgen</artifactId>
+        <artifactId>robotxtgen-parent</artifactId>
         <version>0.1.1</version>
-        <relativePath>./pom-parent.xml</relativePath>
+        <relativePath>./pom.xml</relativePath>
     </parent>
-    <artifactId>robotxtgen</artifactId>
-    <name>robotxtgen</name>
+    <artifactId>robotxtgen-release</artifactId>
+    <name>robotxtgen-release</name>
     <packaging>jar</packaging>
     <build>
         <plugins>
