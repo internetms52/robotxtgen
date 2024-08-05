@@ -1,2 +1,6 @@
 /maven-lib/.idea
 /maven-lib/target
+/.idea
+/maven-plugin/*.iml
+/maven-plugin/target
+/maven-plugin/.idea

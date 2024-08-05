@@ -6,7 +6,7 @@
 
     <parent>
         <groupId>io.github.internetms52</groupId>
-        <artifactId>robotxtgen-parent</artifactId>
+        <artifactId>robotxtgen-maven-plugin</artifactId>
         <version>0.1.1</version>
         <relativePath>./pom.xml</relativePath>
     </parent>
@@ -46,10 +46,4 @@
             </plugin>
         </plugins>
     </build>
-    <distributionManagement>
-        <repository>
-            <id>deedff43-d3b5-46c1-a7ec-a652ae8e545d</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
 </project>
