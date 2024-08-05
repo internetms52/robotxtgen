@@ -26,6 +26,7 @@ public class RobotTextGenMojo extends AbstractMojo {
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
         try {
+            log.info("mojo executed!");
             if (configClass != null) {
                 log.info("configClass:" + configClass);
             }

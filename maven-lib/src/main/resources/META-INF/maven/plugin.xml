@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<plugin>
-    <name>robotxtgen-maven-plugin</name>
-    <description>robotxtgen-maven-plugin</description>
-    <groupId>io.github.internetms52</groupId>
-    <artifactId>robotxtgen</artifactId>
-    <version>0.1.1</version>
-</plugin>

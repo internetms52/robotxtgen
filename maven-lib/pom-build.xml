@@ -12,7 +12,7 @@
     </parent>
     <artifactId>robotxtgen-build</artifactId>
     <name>robotxtgen-build</name>
-    <packaging>jar</packaging>
+    <packaging>maven-plugin</packaging>
 
     <build>
         <plugins>
@@ -29,27 +29,27 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-install-plugin</artifactId>
-                <version>2.5.2</version>
-                <executions>
-                    <execution>
-                        <id>install-custom-jar</id>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                        <phase>install</phase>
-                        <configuration>
-                            <file>${project.basedir}/target/robotxtgen-build-0.1.1.jar</file>
-                            <groupId>io.github.internetms52</groupId>
-                            <artifactId>robotxtgen</artifactId>
-                            <version>0.1.1</version>
-                            <packaging>jar</packaging>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-install-plugin</artifactId>-->
+<!--                <version>2.5.2</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>install-custom-jar</id>-->
+<!--                        <goals>-->
+<!--                            <goal>install-file</goal>-->
+<!--                        </goals>-->
+<!--                        <phase>install</phase>-->
+<!--                        <configuration>-->
+<!--                            <file>${project.basedir}/target/robotxtgen-build-0.1.1.jar</file>-->
+<!--                            <groupId>io.github.internetms52</groupId>-->
+<!--                            <artifactId>robotxtgen</artifactId>-->
+<!--                            <version>0.1.1</version>-->
+<!--                            <packaging>maven-plugin</packaging>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 

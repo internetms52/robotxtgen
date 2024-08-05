@@ -19,16 +19,6 @@
         <robotxtgen.version>0.1.1</robotxtgen.version>
     </properties>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>io.github.internetms52</groupId>
-                <artifactId>robotxtgen</artifactId>
-                <version>0.1.1</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -70,7 +60,7 @@
                 </plugin>
                 <plugin>
                     <groupId>io.github.internetms52</groupId>
-                    <artifactId>robotxtgen</artifactId>
+                    <artifactId>robotxtgen-build</artifactId>
                     <version>0.1.1</version>
                 </plugin>
             </plugins>
@@ -132,6 +122,5 @@
     <modules>
         <module>pom-build.xml</module>
         <module>pom-test.xml</module>
-        <module>pom-release.xml</module>
     </modules>
 </project>
