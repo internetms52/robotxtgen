@@ -4,3 +4,4 @@
 /maven-plugin/*.iml
 /maven-plugin/target
 /maven-plugin/.idea
+/api/target
