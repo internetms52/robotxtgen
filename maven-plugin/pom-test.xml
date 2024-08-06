@@ -21,7 +21,7 @@
                 <artifactId>robotxtgen-build</artifactId>
                 <version>0.1.1</version>
                 <configuration>
-                    <configClass>com.example.MyCustomConfig</configClass>
+                    <configClass>RobotTextConfigTest</configClass>
                 </configuration>
                 <executions>
                     <execution>

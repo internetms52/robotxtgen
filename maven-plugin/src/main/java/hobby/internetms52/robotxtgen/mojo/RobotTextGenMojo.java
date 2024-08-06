@@ -1,7 +1,10 @@
 package hobby.internetms52.robotxtgen.mojo;
 
 import hobby.internetms52.robotxtgen.config.RobotTextGenConfig;
+import hobby.internetms52.robotxtgen.exception.ConfigClassNotFoundException;
+import hobby.internetms52.robotxtgen.exception.FileWriterException;
 import hobby.internetms52.robotxtgen.exception.InvalidOutputDirectoryException;
+import hobby.internetms52.robotxtgen.exception.RobotTextConfigProviderFetchException;
 import hobby.internetms52.robotxtgen.service.RobotTextConfigurationService;
 import hobby.internetms52.robotxtgen.service.RobotTextGenService;
 import org.apache.maven.plugin.AbstractMojo;
@@ -27,13 +30,17 @@ public class RobotTextGenMojo extends AbstractMojo {
     public void execute() throws MojoExecutionException, MojoFailureException {
         try {
             log.info("mojo executed!");
-            if (configClass != null) {
-                log.info("configClass:" + configClass);
-            }
+            log.info("configClass:" + configClass);
             String sourceDirectory = project.getBuild().getSourceDirectory();
             RobotTextGenConfig robotTextGenConfig = robotTextConfigurationService.execute(project, configClass);
             robotTextGenService.execute(robotTextGenConfig);
             log.info("Source Directory:" + sourceDirectory);
+        } catch (RobotTextConfigProviderFetchException e) {
+            log.error("RobotTextConfigProviderFetchException:" + configClass);
+        } catch (ConfigClassNotFoundException e) {
+            log.error("ConfigClassNotFoundException:" + configClass);
+        } catch (FileWriterException e) {
+            log.error("FileWriterException:" + project.getBuild().getOutputDirectory());
         } catch (InvalidOutputDirectoryException ex) {
             log.error("invalid output directory:" + project.getBuild().getOutputDirectory());
         } catch (Exception ex) {
