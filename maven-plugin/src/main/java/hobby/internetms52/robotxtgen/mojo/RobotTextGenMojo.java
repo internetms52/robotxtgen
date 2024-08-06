@@ -25,14 +25,17 @@ public class RobotTextGenMojo extends AbstractMojo {
     private MavenProject project;
     @Parameter(property = "configClass", required = true, readonly = true)
     private String configClass;
+    @Parameter(property = "scanDirectory", readonly = true, defaultValue = "main")
+    private String scanDirectory;
 
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
         try {
             log.info("mojo executed!");
             log.info("configClass:" + configClass);
+            MojoRequest mojoRequest = new MojoRequest(project, configClass, scanDirectory);
             String sourceDirectory = project.getBuild().getSourceDirectory();
-            RobotTextGenConfig robotTextGenConfig = robotTextConfigurationService.execute(project, configClass);
+            RobotTextGenConfig robotTextGenConfig = robotTextConfigurationService.execute(mojoRequest);
             robotTextGenService.execute(robotTextGenConfig);
             log.info("Source Directory:" + sourceDirectory);
         } catch (RobotTextConfigProviderFetchException e) {

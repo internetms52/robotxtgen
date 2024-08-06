@@ -25,6 +25,14 @@ public class MojoClassLoader {
                     .collect(Collectors.toList());
             List<URL> classpathURLs = new ArrayList<>();
 
+            String projectOutputDirectory = project.getBuild().getOutputDirectory();
+
+            List<String> projectClasspathElements = classpathElements.stream()
+                    .filter(Objects::nonNull)
+                    .map(Object::toString)
+                    .filter(element -> element.startsWith(projectOutputDirectory))
+                    .collect(Collectors.toList());
+
             for (String element : classpathStrings) {
                 try {
                     classpathURLs.add(new File(element).toURI().toURL());
