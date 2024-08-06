@@ -7,11 +7,9 @@ import hobby.internetms52.robotxtgen.exception.RobotTextConfigProviderFetchExcep
 import hobby.internetms52.robotxtgen.util.NativeLogger;
 
 public class RobotTextDataInstanceExtractService {
-    private NativeLogger nativeLogger = new NativeLogger(RobotTextDataInstanceExtractService.class);
+    private final NativeLogger nativeLogger = new NativeLogger(RobotTextDataInstanceExtractService.class);
 
-    public RobotTextDataInstance execute(String className) throws ConfigClassNotFoundException, RobotTextConfigProviderFetchException {
-        //依照Class路徑取得class
-        Class<?> configClazz = getConfigClass(className);
+    public RobotTextDataInstance execute(Class<?> configClazz) throws RobotTextConfigProviderFetchException {
         // 確認是否實現了特定接口
         if (RobotTextConfigProvider.class.isAssignableFrom(configClazz)) {
             RobotTextConfigProvider robotTextConfigProvider = getRobotTextConfigProviderInstance(configClazz);
@@ -21,7 +19,7 @@ public class RobotTextDataInstanceExtractService {
             throw new IllegalArgumentException("The specified class does not implement RobotTextConfigProvider");
         }
     }
-    
+
     public RobotTextConfigProvider getRobotTextConfigProviderInstance(Class<?> configClazz) throws RobotTextConfigProviderFetchException {
         try {
             return (RobotTextConfigProvider) configClazz.getDeclaredConstructor().newInstance();

@@ -5,12 +5,12 @@ import org.apache.maven.project.MavenProject;
 public class MojoRequest {
     MavenProject mavenProject;
     String configClass;
-    String scanDirectory;
+    String scanScope;
 
-    public MojoRequest(MavenProject mavenProject, String configClass, String scanDirectory) {
+    public MojoRequest(MavenProject mavenProject, String configClass, String scanScope) {
         this.mavenProject = mavenProject;
         this.configClass = configClass;
-        this.scanDirectory = scanDirectory;
+        this.scanScope = scanScope;
     }
 
     public MavenProject getMavenProject() {
@@ -29,11 +29,11 @@ public class MojoRequest {
         this.configClass = configClass;
     }
 
-    public String getScanDirectory() {
-        return scanDirectory;
+    public String getScanScope() {
+        return scanScope;
     }
 
-    public void setScanDirectory(String scanDirectory) {
-        this.scanDirectory = scanDirectory;
+    public void setScanScope(String scanScope) {
+        this.scanScope = scanScope;
     }
 }

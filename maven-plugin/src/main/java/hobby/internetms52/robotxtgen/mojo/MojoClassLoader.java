@@ -2,7 +2,6 @@ package hobby.internetms52.robotxtgen.mojo;
 
 import hobby.internetms52.robotxtgen.util.NativeLogger;
 import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.project.MavenProject;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -10,48 +9,51 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 public class MojoClassLoader {
     private final NativeLogger nativeLogger = new NativeLogger(MojoClassLoader.class);
 
-    public void scanPackages(MavenProject project, String className) throws MojoExecutionException {
+    private Optional<Class<?>> load(String classPath, String className) throws MojoExecutionException {
+        Optional<Class<?>> resultOpt = Optional.empty();
         try {
-            List<?> classpathElements = project.getCompileClasspathElements();
-            List<String> classpathStrings = classpathElements.stream()
-                    .filter(Objects::nonNull)
-                    .map(Object::toString)
-                    .collect(Collectors.toList());
             List<URL> classpathURLs = new ArrayList<>();
 
-            String projectOutputDirectory = project.getBuild().getOutputDirectory();
-
-            List<String> projectClasspathElements = classpathElements.stream()
-                    .filter(Objects::nonNull)
-                    .map(Object::toString)
-                    .filter(element -> element.startsWith(projectOutputDirectory))
-                    .collect(Collectors.toList());
-
-            for (String element : classpathStrings) {
-                try {
-                    classpathURLs.add(new File(element).toURI().toURL());
-                } catch (MalformedURLException e) {
-                    throw new MojoExecutionException("Error converting classpath element to URL: " + element, e);
-                }
+            try {
+                classpathURLs.add(new File(classPath).toURI().toURL());
+            } catch (MalformedURLException e) {
+                throw new MojoExecutionException("Error converting classpath element to URL: " + classPath, e);
             }
 
             URLClassLoader classLoader = new URLClassLoader(classpathURLs.toArray(new URL[0]));
             List<Class<?>> classes = findClasses(classLoader);
 
             for (Class<?> clazz : classes) {
-                if (clazz.getName().contains("Test")) {
+                if (clazz.getName().contains(className)) {
                     nativeLogger.info("Found test class: ", clazz.getName());
+                    resultOpt = Optional.of(clazz);
+                    break;
                 }
             }
         } catch (Exception e) {
             throw new MojoExecutionException("Error scanning classes", e);
         }
+        return resultOpt;
+    }
+
+    public Optional<Class<?>> load(List<String> classpathElements, String className) throws MojoExecutionException {
+        Optional<Class<?>> resultOpt = Optional.empty();
+        try {
+            for (String classpathElement : classpathElements) {
+                resultOpt = load(classpathElement, className);
+                if (resultOpt.isPresent()) {
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            throw new MojoExecutionException("Error scanning classes", e);
+        }
+        return resultOpt;
     }
 
     private List<Class<?>> findClasses(URLClassLoader classLoader) throws Exception {

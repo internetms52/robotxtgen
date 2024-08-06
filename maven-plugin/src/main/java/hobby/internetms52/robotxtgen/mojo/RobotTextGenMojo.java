@@ -1,10 +1,7 @@
 package hobby.internetms52.robotxtgen.mojo;
 
 import hobby.internetms52.robotxtgen.config.RobotTextGenConfig;
-import hobby.internetms52.robotxtgen.exception.ConfigClassNotFoundException;
-import hobby.internetms52.robotxtgen.exception.FileWriterException;
-import hobby.internetms52.robotxtgen.exception.InvalidOutputDirectoryException;
-import hobby.internetms52.robotxtgen.exception.RobotTextConfigProviderFetchException;
+import hobby.internetms52.robotxtgen.exception.*;
 import hobby.internetms52.robotxtgen.service.RobotTextConfigurationService;
 import hobby.internetms52.robotxtgen.service.RobotTextGenService;
 import org.apache.maven.plugin.AbstractMojo;
@@ -25,19 +22,21 @@ public class RobotTextGenMojo extends AbstractMojo {
     private MavenProject project;
     @Parameter(property = "configClass", required = true, readonly = true)
     private String configClass;
-    @Parameter(property = "scanDirectory", readonly = true, defaultValue = "main")
-    private String scanDirectory;
+    @Parameter(property = "scanScope", readonly = true, defaultValue = "main")
+    private String scanScope;
 
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
         try {
             log.info("mojo executed!");
             log.info("configClass:" + configClass);
-            MojoRequest mojoRequest = new MojoRequest(project, configClass, scanDirectory);
+            MojoRequest mojoRequest = new MojoRequest(project, configClass, scanScope);
             String sourceDirectory = project.getBuild().getSourceDirectory();
             RobotTextGenConfig robotTextGenConfig = robotTextConfigurationService.execute(mojoRequest);
             robotTextGenService.execute(robotTextGenConfig);
             log.info("Source Directory:" + sourceDirectory);
+        } catch (InvalidRobotTextGenConfiguration e) {
+            log.error("InvalidRobotTextGenConfiguration:" + configClass);
         } catch (RobotTextConfigProviderFetchException e) {
             log.error("RobotTextConfigProviderFetchException:" + configClass);
         } catch (ConfigClassNotFoundException e) {
