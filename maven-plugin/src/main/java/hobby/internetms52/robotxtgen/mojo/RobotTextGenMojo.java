@@ -4,6 +4,7 @@ import hobby.internetms52.robotxtgen.config.RobotTextGenConfig;
 import hobby.internetms52.robotxtgen.exception.*;
 import hobby.internetms52.robotxtgen.service.RobotTextConfigurationService;
 import hobby.internetms52.robotxtgen.service.RobotTextGenService;
+import org.apache.maven.artifact.DependencyResolutionRequiredException;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -35,6 +36,8 @@ public class RobotTextGenMojo extends AbstractMojo {
             RobotTextGenConfig robotTextGenConfig = robotTextConfigurationService.execute(mojoRequest);
             robotTextGenService.execute(robotTextGenConfig);
             log.info("Source Directory:" + sourceDirectory);
+        } catch (DependencyResolutionRequiredException e) {
+            log.error("DependencyResolutionRequiredException:" + configClass);
         } catch (InvalidRobotTextGenConfiguration e) {
             log.error("InvalidRobotTextGenConfiguration:" + configClass);
         } catch (RobotTextConfigProviderFetchException e) {

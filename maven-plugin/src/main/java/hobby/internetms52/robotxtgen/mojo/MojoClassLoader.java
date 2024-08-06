@@ -45,7 +45,8 @@ public class MojoClassLoader {
         Optional<Class<?>> resultOpt = Optional.empty();
         try {
             for (String classpathElement : classpathElements) {
-                resultOpt = load(classpathElement, className);
+//                resultOpt = load(classpathElement, className);
+                System.out.println(classpathElement);
                 if (resultOpt.isPresent()) {
                     break;
                 }

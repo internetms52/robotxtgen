@@ -8,7 +8,11 @@ public class ListUtil {
     public static List<String> nullFilter(List<?> list) {
         return list.stream()
                 .filter(Objects::nonNull)
-                .map(Object::toString)
+                .filter(obj -> {
+                    return obj instanceof String;
+                }).map(obj -> {
+                    return (String) obj;
+                })
                 .collect(Collectors.toList());
     }
 }

@@ -8,6 +8,7 @@ import hobby.internetms52.robotxtgen.exception.RobotTextConfigProviderFetchExcep
 import hobby.internetms52.robotxtgen.mojo.MojoClassLoader;
 import hobby.internetms52.robotxtgen.mojo.MojoRequest;
 import hobby.internetms52.robotxtgen.util.ListUtil;
+import org.apache.maven.artifact.DependencyResolutionRequiredException;
 import org.apache.maven.plugin.MojoExecutionException;
 
 import java.util.Optional;
@@ -16,7 +17,7 @@ public class RobotTextConfigurationService {
     private final RobotTextDataInstanceExtractService robotTextDataInstanceExtractService = new RobotTextDataInstanceExtractService();
     private final MojoClassLoader mojoClassLoader = new MojoClassLoader();
 
-    public RobotTextGenConfig execute(MojoRequest mojoRequest) throws ConfigClassNotFoundException, RobotTextConfigProviderFetchException, MojoExecutionException, InvalidRobotTextGenConfiguration {
+    public RobotTextGenConfig execute(MojoRequest mojoRequest) throws ConfigClassNotFoundException, RobotTextConfigProviderFetchException, MojoExecutionException, InvalidRobotTextGenConfiguration, DependencyResolutionRequiredException {
         String outputDirectory = mojoRequest.getMavenProject().getBuild().getOutputDirectory();
         Optional<Class<?>> resultClazzOpt = Optional.empty();
         if (mojoRequest.getScanScope().equalsIgnoreCase("test")) {
