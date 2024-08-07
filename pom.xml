@@ -6,7 +6,7 @@
 
     <groupId>io.github.internetms52</groupId>
     <artifactId>robotxtgen-parent</artifactId>
-    <version>0.2.0</version>
+    <version>0.2.1</version>
     <name>robotxtgen-parent</name>
     <packaging>pom</packaging>
     <url>https://github.com/internetms52/robotxtgen</url>
@@ -16,7 +16,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <robotxtgen.version>0.2.0</robotxtgen.version>
         <gpg.skip>true</gpg.skip>
         <maven.javadoc.skip>true</maven.javadoc.skip>
     </properties>
