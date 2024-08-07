@@ -7,7 +7,7 @@
     <parent>
         <groupId>io.github.internetms52</groupId>
         <artifactId>robotxtgen-maven-plugin</artifactId>
-        <version>0.1.1</version>
+        <version>0.2.0</version>
         <relativePath>./pom.xml</relativePath>
     </parent>
     <artifactId>robotxtgen-test</artifactId>
@@ -19,7 +19,7 @@
             <plugin>
                 <groupId>io.github.internetms52</groupId>
                 <artifactId>robotxtgen-build</artifactId>
-                <version>0.1.1</version>
+                <version>0.2.0</version>
                 <configuration>
                     <configClass>RobotTextConfigTest</configClass>
                     <scanScope>test</scanScope>
