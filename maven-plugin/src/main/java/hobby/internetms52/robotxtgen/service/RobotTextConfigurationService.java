@@ -12,6 +12,7 @@ import hobby.internetms52.robotxtgen.util.ListUtil;
 import org.apache.maven.artifact.DependencyResolutionRequiredException;
 
 public class RobotTextConfigurationService {
+    private final String FILE_NAME = "robots.txt";
     private final RobotTextDataInstanceExtractService robotTextDataInstanceExtractService = new RobotTextDataInstanceExtractService();
     private final MojoClassLoader mojoClassLoader = new GeneralMojoClassLoader();
 
@@ -31,8 +32,7 @@ public class RobotTextConfigurationService {
             );
         }
         RobotTextDataInstance robotTextDataInstance = robotTextDataInstanceExtractService.execute(clazz);
-        String robotTextGenPath = mojoRequest.getMavenProject().getBuild().getDirectory() + "/" + "robot.txt";
+        String robotTextGenPath = mojoRequest.getMavenProject().getBuild().getDirectory() + "/" + FILE_NAME;
         return new RobotTextGenConfig(robotTextGenPath, robotTextDataInstance);
     }
-
 }
