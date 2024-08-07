@@ -10,8 +10,8 @@
         <version>0.1.1</version>
         <relativePath>./pom.xml</relativePath>
     </parent>
-    <artifactId>robotxtgen-release</artifactId>
-    <name>robotxtgen-release</name>
+    <artifactId>robotxtgen-maven-plugin</artifactId>
+    <name>robotxtgen-maven-plugin</name>
     <packaging>jar</packaging>
     <properties>
         <gpg.skip>false</gpg.skip>
