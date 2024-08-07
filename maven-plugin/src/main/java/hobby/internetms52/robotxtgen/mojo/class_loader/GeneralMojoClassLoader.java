@@ -18,7 +18,7 @@ public class GeneralMojoClassLoader implements MojoClassLoader {
             URLClassLoader classLoader = new URLClassLoader(urls, this.getClass().getClassLoader());
             // 使用類加載器加載特定的類
             Class<?> loadedClass = classLoader.loadClass(fullClassPath);
-            logger.info("Classes directory: ", outputDirectory);
+            logger.debug("Classes directory: ", outputDirectory);
             return loadedClass;
         } catch (Exception e) {
             logger.error("Class Not Found in directory: ", outputDirectory, ",full class path:", fullClassPath);

@@ -17,8 +17,7 @@ import org.apache.maven.project.MavenProject;
 
 @Mojo(name = "generate-robotstxt", defaultPhase = LifecyclePhase.COMPILE)
 public class RobotTextGenMojo extends AbstractMojo {
-    public final RichCustomLogger logger = new RichCustomLogger(new MavenPluginLogger(getLog()));
-    private final RobotTextGenService robotTextGenService = new RobotTextGenService();
+    private final RichCustomLogger logger = new RichCustomLogger(new MavenPluginLogger(getLog()));
     private final RobotTextConfigurationService robotTextConfigurationService = new RobotTextConfigurationService();
     @Parameter(defaultValue = "${project}", required = true, readonly = true)
     private MavenProject project;
@@ -30,13 +29,11 @@ public class RobotTextGenMojo extends AbstractMojo {
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
         try {
-            logger.info("mojo executed!");
-            logger.info("configClass:" + configClass);
+            RobotTextGenService robotTextGenService = new RobotTextGenService(logger);
             MojoRequest mojoRequest = new MojoRequest(project, configClass, scanScope);
-            String sourceDirectory = project.getBuild().getSourceDirectory();
+            logger.info("Config Class: ", configClass, ", scanScope: ", scanScope);
             RobotTextGenConfig robotTextGenConfig = robotTextConfigurationService.execute(mojoRequest);
             robotTextGenService.execute(robotTextGenConfig);
-            logger.info("Source Directory:" + sourceDirectory);
         } catch (ClassNotFoundException e) {
             logger.error("ClassNotFoundException:" + configClass);
         } catch (DependencyResolutionRequiredException e) {
