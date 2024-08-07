@@ -81,8 +81,6 @@
             </plugin>
         </plugins>
     </build>
-    <modules>
-        <module>pom-build.xml</module>
-        <module>pom-test.xml</module>
-    </modules>
+
+
 </project>

@@ -7,7 +7,7 @@
     <parent>
         <groupId>io.github.internetms52</groupId>
         <artifactId>robotxtgen-maven-plugin</artifactId>
-        <version>0.2.0</version>
+        <version>0.2.1</version>
         <relativePath>./pom.xml</relativePath>
     </parent>
     <artifactId>robotxtgen-maven-plugin</artifactId>
@@ -16,4 +16,31 @@
     <properties>
         <gpg.skip>false</gpg.skip>
     </properties>
+
+    <developers>
+        <developer>
+            <name>LU.YU HSIN</name>
+            <email>internetms52@gmail.com</email>
+            <organization>internetms52</organization>
+            <organizationUrl>https://github.com/internetms52/robotxtgen</organizationUrl>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:git@github.com:internetms52/robotxtgen.git</connection>
+        <developerConnection>scm:git:git@github.com:internetms52/robotxtgen.git</developerConnection>
+        <url>https://github.com/internetms52/robotxtgen</url>
+    </scm>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <distributionManagement>
+        <repository>
+            <id>deedff43-d3b5-46c1-a7ec-a652ae8e545d</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 </project>
