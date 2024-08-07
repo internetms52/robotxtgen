@@ -12,7 +12,7 @@
     </parent>
     <artifactId>robotxtgen-maven-plugin</artifactId>
     <name>robotxtgen-maven-plugin</name>
-    <packaging>jar</packaging>
+    <packaging>maven-plugin</packaging>
     <properties>
         <gpg.skip>false</gpg.skip>
     </properties>
