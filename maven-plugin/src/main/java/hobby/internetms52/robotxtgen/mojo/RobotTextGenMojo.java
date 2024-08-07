@@ -4,11 +4,12 @@ import hobby.internetms52.robotxtgen.config.RobotTextGenConfig;
 import hobby.internetms52.robotxtgen.exception.*;
 import hobby.internetms52.robotxtgen.service.RobotTextConfigurationService;
 import hobby.internetms52.robotxtgen.service.RobotTextGenService;
+import hobby.internetms52.robotxtgen.util.MavenPluginLogger;
+import hobby.internetms52.robotxtgen.util.RichCustomLogger;
 import org.apache.maven.artifact.DependencyResolutionRequiredException;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
-import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
@@ -16,7 +17,7 @@ import org.apache.maven.project.MavenProject;
 
 @Mojo(name = "generate-robotstxt", defaultPhase = LifecyclePhase.COMPILE)
 public class RobotTextGenMojo extends AbstractMojo {
-    public final Log log = getLog();
+    public final RichCustomLogger logger = new RichCustomLogger(new MavenPluginLogger(getLog()));
     private final RobotTextGenService robotTextGenService = new RobotTextGenService();
     private final RobotTextConfigurationService robotTextConfigurationService = new RobotTextConfigurationService();
     @Parameter(defaultValue = "${project}", required = true, readonly = true)
@@ -29,27 +30,29 @@ public class RobotTextGenMojo extends AbstractMojo {
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
         try {
-            log.info("mojo executed!");
-            log.info("configClass:" + configClass);
+            logger.info("mojo executed!");
+            logger.info("configClass:" + configClass);
             MojoRequest mojoRequest = new MojoRequest(project, configClass, scanScope);
             String sourceDirectory = project.getBuild().getSourceDirectory();
             RobotTextGenConfig robotTextGenConfig = robotTextConfigurationService.execute(mojoRequest);
             robotTextGenService.execute(robotTextGenConfig);
-            log.info("Source Directory:" + sourceDirectory);
+            logger.info("Source Directory:" + sourceDirectory);
+        } catch (ClassNotFoundException e) {
+            logger.error("ClassNotFoundException:" + configClass);
         } catch (DependencyResolutionRequiredException e) {
-            log.error("DependencyResolutionRequiredException:" + configClass);
+            logger.error("DependencyResolutionRequiredException:" + configClass);
         } catch (InvalidRobotTextGenConfiguration e) {
-            log.error("InvalidRobotTextGenConfiguration:" + configClass);
+            logger.error("InvalidRobotTextGenConfiguration:" + configClass);
         } catch (RobotTextConfigProviderFetchException e) {
-            log.error("RobotTextConfigProviderFetchException:" + configClass);
+            logger.error("RobotTextConfigProviderFetchException:" + configClass);
         } catch (ConfigClassNotFoundException e) {
-            log.error("ConfigClassNotFoundException:" + configClass);
+            logger.error("ConfigClassNotFoundException:" + configClass);
         } catch (FileWriterException e) {
-            log.error("FileWriterException:" + project.getBuild().getOutputDirectory());
+            logger.error("FileWriterException:" + project.getBuild().getOutputDirectory());
         } catch (InvalidOutputDirectoryException ex) {
-            log.error("invalid output directory:" + project.getBuild().getOutputDirectory());
+            logger.error("invalid output directory:" + project.getBuild().getOutputDirectory());
         } catch (Exception ex) {
-            log.error(ex.getMessage());
+            logger.error(ex.getMessage());
         }
     }
 }

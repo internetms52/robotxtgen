@@ -11,34 +11,28 @@ import hobby.internetms52.robotxtgen.mojo.class_loader.MojoClassLoader;
 import hobby.internetms52.robotxtgen.util.ListUtil;
 import org.apache.maven.artifact.DependencyResolutionRequiredException;
 
-import java.util.Optional;
-
 public class RobotTextConfigurationService {
     private final RobotTextDataInstanceExtractService robotTextDataInstanceExtractService = new RobotTextDataInstanceExtractService();
     private final MojoClassLoader mojoClassLoader = new GeneralMojoClassLoader();
 
     public RobotTextGenConfig execute(MojoRequest mojoRequest) throws ConfigClassNotFoundException, RobotTextConfigProviderFetchException, InvalidRobotTextGenConfiguration, DependencyResolutionRequiredException, ClassNotFoundException {
-        String outputDirectory = mojoRequest.getMavenProject().getBuild().getOutputDirectory();
-        Optional<Class<?>> resultClazzOpt = Optional.empty();
+        Class<?> clazz;
         if (mojoRequest.getScanScope().equalsIgnoreCase("test")) {
             ListUtil.nullFilter(mojoRequest.getMavenProject().getTestClasspathElements()).forEach(System.out::println);
-            mojoClassLoader.load(
+            clazz = mojoClassLoader.load(
                     mojoRequest.getMavenProject().getTestClasspathElements().get(0),
                     mojoRequest.getConfigClass()
             );
         } else {
             ListUtil.nullFilter(mojoRequest.getMavenProject().getCompileClasspathElements()).forEach(System.out::println);
-            mojoClassLoader.load(
+            clazz = mojoClassLoader.load(
                     mojoRequest.getMavenProject().getCompileClasspathElements().get(0),
                     mojoRequest.getConfigClass()
             );
         }
-        if (resultClazzOpt.isPresent()) {
-            RobotTextDataInstance robotTextDataInstance = robotTextDataInstanceExtractService.execute(resultClazzOpt.get());
-            return new RobotTextGenConfig(outputDirectory, robotTextDataInstance);
-        } else {
-            throw new InvalidRobotTextGenConfiguration();
-        }
+        RobotTextDataInstance robotTextDataInstance = robotTextDataInstanceExtractService.execute(clazz);
+        String robotTextGenPath = mojoRequest.getMavenProject().getBuild().getDirectory() + "/" + "robot.txt";
+        return new RobotTextGenConfig(robotTextGenPath, robotTextDataInstance);
     }
 
 }
