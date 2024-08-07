@@ -5,29 +5,31 @@ import hobby.internetms52.robotxtgen.config.RobotTextGenConfig;
 import hobby.internetms52.robotxtgen.exception.ConfigClassNotFoundException;
 import hobby.internetms52.robotxtgen.exception.InvalidRobotTextGenConfiguration;
 import hobby.internetms52.robotxtgen.exception.RobotTextConfigProviderFetchException;
-import hobby.internetms52.robotxtgen.mojo.MojoClassLoader;
 import hobby.internetms52.robotxtgen.mojo.MojoRequest;
+import hobby.internetms52.robotxtgen.mojo.class_loader.GeneralMojoClassLoader;
+import hobby.internetms52.robotxtgen.mojo.class_loader.MojoClassLoader;
 import hobby.internetms52.robotxtgen.util.ListUtil;
 import org.apache.maven.artifact.DependencyResolutionRequiredException;
-import org.apache.maven.plugin.MojoExecutionException;
 
 import java.util.Optional;
 
 public class RobotTextConfigurationService {
     private final RobotTextDataInstanceExtractService robotTextDataInstanceExtractService = new RobotTextDataInstanceExtractService();
-    private final MojoClassLoader mojoClassLoader = new MojoClassLoader();
+    private final MojoClassLoader mojoClassLoader = new GeneralMojoClassLoader();
 
-    public RobotTextGenConfig execute(MojoRequest mojoRequest) throws ConfigClassNotFoundException, RobotTextConfigProviderFetchException, MojoExecutionException, InvalidRobotTextGenConfiguration, DependencyResolutionRequiredException {
+    public RobotTextGenConfig execute(MojoRequest mojoRequest) throws ConfigClassNotFoundException, RobotTextConfigProviderFetchException, InvalidRobotTextGenConfiguration, DependencyResolutionRequiredException, ClassNotFoundException {
         String outputDirectory = mojoRequest.getMavenProject().getBuild().getOutputDirectory();
         Optional<Class<?>> resultClazzOpt = Optional.empty();
         if (mojoRequest.getScanScope().equalsIgnoreCase("test")) {
-            resultClazzOpt = mojoClassLoader.load(
-                    ListUtil.nullFilter(mojoRequest.getMavenProject().getTestClasspathElements()),
+            ListUtil.nullFilter(mojoRequest.getMavenProject().getTestClasspathElements()).forEach(System.out::println);
+            mojoClassLoader.load(
+                    mojoRequest.getMavenProject().getTestClasspathElements().get(0),
                     mojoRequest.getConfigClass()
             );
         } else {
-            resultClazzOpt = mojoClassLoader.load(
-                    ListUtil.nullFilter(mojoRequest.getMavenProject().getCompileClasspathElements()),
+            ListUtil.nullFilter(mojoRequest.getMavenProject().getCompileClasspathElements()).forEach(System.out::println);
+            mojoClassLoader.load(
+                    mojoRequest.getMavenProject().getCompileClasspathElements().get(0),
                     mojoRequest.getConfigClass()
             );
         }

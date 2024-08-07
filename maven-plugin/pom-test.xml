@@ -22,9 +22,11 @@
                 <version>0.1.1</version>
                 <configuration>
                     <configClass>RobotTextConfigTest</configClass>
+                    <scanScope>test</scanScope>
                 </configuration>
                 <executions>
                     <execution>
+                        <phase>test</phase>
                         <goals>
                             <goal>generate-robotstxt</goal>
                         </goals>
