@@ -4,22 +4,28 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>io.github.internetms52</groupId>
-        <artifactId>robotxtgen-parent</artifactId>
-        <version>0.2.1</version>
-        <relativePath>../pom.xml</relativePath>
-    </parent>
-
+    <groupId>io.github.internetms52</groupId>
     <artifactId>robotxtgen-maven-plugin</artifactId>
+    <version>0.2.1</version>
     <name>robotxtgen-maven-plugin</name>
-    <packaging>pom</packaging>
+    <packaging>maven-plugin</packaging>
+    <url>https://github.com/internetms52/robotxtgen</url>
+    <description>this is a maven plugin for generate robot.txt</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <gpg.skip>true</gpg.skip>
+        <maven.javadoc.skip>false</maven.javadoc.skip>
+    </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-plugin-api</artifactId>
             <version>3.6.3</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.maven.plugin-tools</groupId>
@@ -37,12 +43,12 @@
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-artifact</artifactId>
             <version>3.8.1</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>io.github.internetms52</groupId>
             <artifactId>robotxtgen-api</artifactId>
-            <version>0.2.1</version>
-            <scope>provided</scope>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 
@@ -50,37 +56,160 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-plugin-plugin</artifactId>
-                <version>3.6.1</version> <!-- 或其他版本 -->
-                <executions>
-                    <execution>
-                        <id>mojo-descriptor</id>
-                        <goals>
-                            <goal>descriptor</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <goalPrefix>robotxtgen</goalPrefix>
-                    <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
                 <version>3.2.1</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
-                        <phase>package</phase>
                         <goals>
                             <goal>jar-no-fork</goal>
                         </goals>
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.5.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>central</publishingServerId>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>3.0.1</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                        <configuration>
+                            <gpgArguments>
+                                <arg>--pinentry-mode</arg>
+                                <arg>loopback</arg>
+                            </gpgArguments>
+                            <skip>${gpg.skip}</skip>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.8.1</version>
+            </plugin>
         </plugins>
     </build>
 
+    <developers>
+        <developer>
+            <name>LU.YU HSIN</name>
+            <email>internetms52@gmail.com</email>
+            <organization>internetms52</organization>
+            <organizationUrl>https://github.com/internetms52/robotxtgen</organizationUrl>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:git@github.com:internetms52/robotxtgen.git</connection>
+        <developerConnection>scm:git:git@github.com:internetms52/robotxtgen.git</developerConnection>
+        <url>https://github.com/internetms52/robotxtgen</url>
+    </scm>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <distributionManagement>
+        <repository>
+            <id>deedff43-d3b5-46c1-a7ec-a652ae8e545d</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 
+    <profiles>
+        <profile>
+            <id>default</id>
+            <properties>
+                <gpg.skip>true</gpg.skip>
+                <maven.javadoc.skip>false</maven.javadoc.skip>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>test</id>
+            <properties>
+                <gpg.skip>false</gpg.skip>
+                <maven.javadoc.skip>false</maven.javadoc.skip>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>io.github.internetms52</groupId>
+                        <artifactId>robotxtgen-maven-plugin</artifactId>
+                        <version>${project.version}</version>
+                        <configuration>
+                            <configClass>RobotTextConfigTest</configClass>
+                            <scanScope>test</scanScope>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>generate-robotstxt</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>deploy</id>
+            <properties>
+                <gpg.skip>false</gpg.skip>
+                <maven.javadoc.skip>false</maven.javadoc.skip>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>io.github.internetms52</groupId>
+                        <artifactId>robotxtgen-maven-plugin</artifactId>
+                        <version>${project.version}</version>
+                        <configuration>
+                            <configClass>RobotTextConfigTest</configClass>
+                            <scanScope>test</scanScope>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>generate-robotstxt</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

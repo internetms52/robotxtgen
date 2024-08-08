@@ -7,7 +7,7 @@
     <groupId>io.github.internetms52</groupId>
     <artifactId>robotxtgen-api</artifactId>
     <version>0.2.1</version>
-    <name>robotxtgen-parent</name>
+    <name>robotxtgen-api</name>
     <packaging>jar</packaging>
     <url>https://github.com/internetms52/robotxtgen</url>
     <description>this is an api library for generate robot.txt</description>

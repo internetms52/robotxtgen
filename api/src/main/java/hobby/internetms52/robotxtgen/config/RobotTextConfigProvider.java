@@ -4,5 +4,5 @@ import hobby.internetms52.robotxtgen.RobotTextDataInstance;
 
 public interface RobotTextConfigProvider {
     RobotTextDataInstance robotTextDataInstance();
-    
+
 }
