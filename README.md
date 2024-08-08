@@ -30,9 +30,26 @@ public class MyRobotTextConfig implements RobotTextConfigProvider {
     public RobotTextDataInstance robotTextDataInstance() {
         // Implement this method to return your RobotTextDataInstance
         // This is where you define the content of your robots.txt
-        return new RobotTextDataInstance()
-                .addUserAgent("*")
-                .addDisallow("/private/");
+        List<UserAgentSection> userAgentSectionList = new ArrayList<>();
+        List<String> disallow = new ArrayList<>();
+        disallow.add("/private/");
+        List<String> allow = new ArrayList<>();
+        allow.add("/public/");
+        userAgentSectionList.add(new UserAgentSection(
+                "*",
+                disallow,
+                allow,
+                10,
+                null,
+                null
+        ));
+        List<String> sitemaps = new ArrayList<>();
+        sitemaps.add("https://www.example.com/sitemap.xml");
+        return new RobotTextDataInstance(
+                userAgentSectionList,
+                sitemaps,
+                "www.example.com"
+        );
     }
 }
 ```
