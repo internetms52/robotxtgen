@@ -6,7 +6,7 @@
 
     <groupId>io.github.internetms52</groupId>
     <artifactId>robotxtgen-maven-plugin</artifactId>
-    <version>0.2.1</version>
+    <version>0.3.1</version>
     <name>robotxtgen-maven-plugin</name>
     <packaging>maven-plugin</packaging>
     <url>https://github.com/internetms52/robotxtgen</url>
