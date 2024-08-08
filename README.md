@@ -3,9 +3,8 @@
 robot.txt generator
 
 ## Overview
-用於產生robots.txt的plugin
-因為這個plugin可以自訂類別來決定輸出的robots.txt的資料
-所以可以達成robots.txt as code的部份
+A Maven plugin for generating robots.txt files. 
+It enables a 'robots.txt as code' approach through custom class-based content definition.
 
 ## components
 1. API：robots.txt generate api
