@@ -50,7 +50,7 @@ public class RichCustomLogger implements CustomLogger {
     /**
      * Proxy for the original logger's debug function.
      *
-     * @param msg
+     * @param msg message
      */
     @Override
     public void debug(String... msg) {
@@ -60,7 +60,7 @@ public class RichCustomLogger implements CustomLogger {
     /**
      * Proxy for the original logger's info function.
      *
-     * @param msg
+     * @param msg message
      */
     @Override
     public void info(String... msg) {
@@ -70,7 +70,7 @@ public class RichCustomLogger implements CustomLogger {
     /**
      * Proxy for the original logger's error function.
      *
-     * @param msg
+     * @param msg message
      */
     @Override
     public void error(String... msg) {
