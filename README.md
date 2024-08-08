@@ -30,26 +30,27 @@ public class MyRobotTextConfig implements RobotTextConfigProvider {
     public RobotTextDataInstance robotTextDataInstance() {
         // Implement this method to return your RobotTextDataInstance
         // This is where you define the content of your robots.txt
-        List<UserAgentSection> userAgentSectionList = new ArrayList<>();
-        List<String> disallow = new ArrayList<>();
-        disallow.add("/private/");
-        List<String> allow = new ArrayList<>();
-        allow.add("/public/");
-        userAgentSectionList.add(new UserAgentSection(
-                "*",
-                disallow,
-                allow,
-                10,
-                null,
-                null
-        ));
-        List<String> sitemaps = new ArrayList<>();
-        sitemaps.add("https://www.example.com/sitemap.xml");
-        return new RobotTextDataInstance(
-                userAgentSectionList,
-                sitemaps,
-                "www.example.com"
-        );
+        return RobotTextDataInstance.builder()
+                .addUserAgentSection(
+                        UserAgentSection.builder()
+                                .userAgent("*")
+                                .addDisallow("/private/")
+                                .addAllow("/public/")
+                                .crawlDelay(10)
+                                .build()
+                ).addUserAgentSection(
+                        UserAgentSection.builder()
+                                .userAgent("Googlebot")
+                                .addDisallow("/google-specific/")
+                                .build()
+                ).addUserAgentSection(
+                        UserAgentSection.builder()
+                                .userAgent("Bingbot")
+                                .addDisallow("/bing-specific/")
+                                .build()
+                ).addSiteMap("https://www.example.com/sitemap.xml")
+                .host("www.example.com")
+                .build();
     }
 }
 ```
