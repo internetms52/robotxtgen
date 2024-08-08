@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RobotTextDataInstanceBuilder {
-    private List<UserAgentSection> userAgentSections = new ArrayList<>();
-    private List<String> sitemaps = new ArrayList<>();
+    private final List<UserAgentSection> userAgentSections = new ArrayList<>();
+    private final List<String> sitemaps = new ArrayList<>();
     private String host;
 
     public RobotTextDataInstanceBuilder addUserAgentSection(UserAgentSection userAgentSection) {

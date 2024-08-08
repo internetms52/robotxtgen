@@ -24,10 +24,8 @@ public class RobotTextContentGeneratorTest {
         );
     }
 
-    @Test
-    public void testGenerator() {
-        String result = robotTextContentGenerator.gen(setUpRobotTextDataInstance());
-        String expectedAnswer = "User-agent: *\n" +
+    public String expectedAnswer() {
+        return "User-agent: *\n" +
                 "Disallow: /private/\n" +
                 "Allow: /public/\n" +
                 "Crawl-delay: 10\n" +
@@ -40,8 +38,41 @@ public class RobotTextContentGeneratorTest {
                 "\n" +
                 "Sitemap: https://www.example.com/sitemap.xml\n" +
                 "Host: www.example.com";
+    }
+
+    @Test
+    public void testBuilder() {
+        RobotTextDataInstance robotTextBuilderInstance = RobotTextDataInstance.builder()
+                .addUserAgentSection(
+                        UserAgentSection.builder()
+                                .userAgent("*")
+                                .addDisallow("/private/")
+                                .addAllow("/public/")
+                                .crawlDelay(10)
+                                .build()
+                ).addUserAgentSection(
+                        UserAgentSection.builder()
+                                .userAgent("Googlebot")
+                                .addDisallow("/google-specific/")
+                                .build()
+                ).addUserAgentSection(
+                        UserAgentSection.builder()
+                                .userAgent("Bingbot")
+                                .addDisallow("/bing-specific/")
+                                .build()
+                ).addSiteMap("https://www.example.com/sitemap.xml")
+                .host("www.example.com")
+                .build();
+        String constructorResult = robotTextContentGenerator.gen(setUpRobotTextDataInstance());
+        String builderResult = robotTextContentGenerator.gen(robotTextBuilderInstance);
+        Assertions.assertEquals(constructorResult, builderResult);
+    }
+
+    @Test
+    public void testGenerator() {
+        String result = robotTextContentGenerator.gen(setUpRobotTextDataInstance());
         String resultWithoutLineSeparator = result.replace("\n", "").replace("\r", "");
-        String expectedAnswerWithoutLineSeparator = expectedAnswer.replace("\n", "").replace("\r", "");
+        String expectedAnswerWithoutLineSeparator = expectedAnswer().replace("\n", "").replace("\r", "");
         Assertions.assertEquals(expectedAnswerWithoutLineSeparator, resultWithoutLineSeparator);
     }
 

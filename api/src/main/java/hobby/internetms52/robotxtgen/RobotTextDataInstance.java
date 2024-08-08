@@ -1,5 +1,7 @@
 package hobby.internetms52.robotxtgen;
 
+import hobby.internetms52.robotxtgen.builder.RobotTextDataInstanceBuilder;
+
 import java.util.List;
 
 /**
@@ -13,6 +15,9 @@ public class RobotTextDataInstance {
     private List<String> sitemaps;
     private String host;
 
+    public static RobotTextDataInstanceBuilder builder() {
+        return new RobotTextDataInstanceBuilder();
+    }
 
     /**
      * default constructor
