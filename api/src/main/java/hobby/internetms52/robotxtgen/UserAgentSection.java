@@ -21,13 +21,12 @@ public class UserAgentSection {
 
     /**
      * default constructor
-     *
-     * @param userAgent   String
-     * @param disallows   List of String
-     * @param allows      String
-     * @param crawlDelay  Integer
+     * @param userAgent String
+     * @param disallows List of String
+     * @param allows String
+     * @param crawlDelay Integer
      * @param requestRate String
-     * @param comments    List of String
+     * @param comments List of String
      */
     public UserAgentSection(String userAgent, List<String> disallows, List<String> allows, Integer crawlDelay, String requestRate, List<String> comments) {
         this.userAgent = userAgent;
@@ -40,7 +39,6 @@ public class UserAgentSection {
 
     /**
      * default UserAgent getter
-     *
      * @return String
      */
     public String getUserAgent() {
@@ -49,7 +47,6 @@ public class UserAgentSection {
 
     /**
      * default UserAgentSetter
-     *
      * @param userAgent String
      */
     public void setUserAgent(String userAgent) {
@@ -58,7 +55,6 @@ public class UserAgentSection {
 
     /**
      * default Disallows getter
-     *
      * @return List of String
      */
     public List<String> getDisallows() {
@@ -67,7 +63,6 @@ public class UserAgentSection {
 
     /**
      * default disallows setter
-     *
      * @param disallows List of String
      */
     public void setDisallows(List<String> disallows) {
@@ -76,7 +71,6 @@ public class UserAgentSection {
 
     /**
      * default allow path setter
-     *
      * @return List of String
      */
     public List<String> getAllows() {
@@ -85,7 +79,6 @@ public class UserAgentSection {
 
     /**
      * default allows setter
-     *
      * @param allows List of String
      */
     public void setAllows(List<String> allows) {
@@ -94,7 +87,6 @@ public class UserAgentSection {
 
     /**
      * "Crawl-delay is a directive in the robots.txt file that specifies the number of seconds a web crawler should wait between consecutive requests to the server. For example, a Crawl-delay of 10 means the crawler should pause for 10 seconds after each request before making the next one. This helps to reduce the load on the server by spacing out the requests from search engine bots."
-     *
      * @return Integer
      */
     public Integer getCrawlDelay() {
@@ -103,7 +95,6 @@ public class UserAgentSection {
 
     /**
      * default crawlDelay setter
-     *
      * @param crawlDelay Integer
      */
     public void setCrawlDelay(Integer crawlDelay) {
@@ -112,7 +103,6 @@ public class UserAgentSection {
 
     /**
      * "Request-rate is a more precise directive used in robots.txt to control the rate at which a web crawler can make requests. It specifies the number of requests allowed within a given time period. For instance, a Request-rate of 1/10s means the crawler is allowed to make one request every 10 seconds. This provides finer control over the crawler's behavior compared to Crawl-delay, allowing website owners to balance between server load and crawling efficiency."
-     *
      * @return String
      */
     public String getRequestRate() {
@@ -121,7 +111,6 @@ public class UserAgentSection {
 
     /**
      * default request-rate setter
-     *
      * @param requestRate String
      */
     public void setRequestRate(String requestRate) {
@@ -130,7 +119,6 @@ public class UserAgentSection {
 
     /**
      * default comments getter
-     *
      * @return List of String
      */
     public List<String> getComments() {
@@ -139,7 +127,6 @@ public class UserAgentSection {
 
     /**
      * default comments setter
-     *
      * @param comments List of String
      */
     public void setComments(List<String> comments) {
