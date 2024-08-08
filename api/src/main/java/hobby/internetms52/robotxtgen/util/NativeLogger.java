@@ -36,7 +36,7 @@ public class NativeLogger implements CustomLogger {
 
     /**
      * expanded of error function.
-     * @param ex
+     * @param ex exception
      */
     public void error(Exception ex) {
         error(ex.getClass().getName(), "|", ex.getMessage());
@@ -49,6 +49,5 @@ public class NativeLogger implements CustomLogger {
     public void error(String... msg) {
         logger.warning(strBinder(msg));
     }
-
 
 }
