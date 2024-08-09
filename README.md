@@ -17,7 +17,7 @@ Follow these steps to integrate and use the robotxtgen-maven-plugin in your proj
 <dependency>
     <groupId>io.github.internetms52</groupId>
     <artifactId>robotxtgen-api</artifactId>
-    <version>0.2.1</version>
+    <version>0.3.1</version>
 </dependency> 
 ```
 ### Step 2: Implement the Configuration Class
@@ -78,4 +78,6 @@ By default, the plugin generates the robots.txt file in the `target` directory.
 mvn clean compile 
 ```
 
+## Support the Project
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/rl8C1nu)
 
