@@ -1,4 +1,7 @@
 package hobby.internetms52.robotxtgen.exception;
 
-public class InvalidOutputDirectoryException extends Exception{
+/**
+ * Exception thrown when the specified output directory is invalid or not found.
+ */
+public class InvalidOutputDirectoryException extends Exception {
 }
