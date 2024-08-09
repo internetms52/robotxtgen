@@ -1,11 +1,17 @@
 package hobby.internetms52.robotxtgen.text_gen;
 
 public interface TextGen<T> {
-    //colon
+    /**
+     * colon
+     */
     String TEXT_GEN_COLON = ":";
-    //hash_sign
+    /**
+     * hash_sign
+     */
     String TEXT_HASH_SIGN = "#";
-    //line_separator
+    /**
+     * line_separator
+     */
     String LINE_SEPARATOR = System.lineSeparator();
 
     String gen(T object);
