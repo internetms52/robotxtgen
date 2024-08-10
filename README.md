@@ -77,6 +77,8 @@ By default, the plugin generates the robots.txt file in the `target` directory.
 ```
 mvn clean compile 
 ```
+## License
+This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 
 ## Support the Project
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/rl8C1nu)
