@@ -59,7 +59,7 @@ public class MyRobotTextConfig implements RobotTextConfigProvider {
 <plugin>
     <groupId>io.github.internetms52</groupId>
     <artifactId>robotxtgen-maven-plugin</artifactId>
-    <version>0.2.1</version>
+    <version>0.3.1</version>
     <configuration>
         <configClass>com.example.MyRobotTextConfig</configClass>
     </configuration>
